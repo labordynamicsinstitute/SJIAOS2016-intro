@@ -1,0 +1,144 @@
+
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[article,letter]{llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+
+\usepackage{url}
+%\urldef{\mailsa}\path|{joerg.drechsler@iab.de}
+%\urldef{\mailsb}\path|{lars.vilhuber@cornell.edu}
+%\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+\usepackage{acronym}
+\input{acrodefs}
+
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{Synthetic establishment microdata around the world}
+
+% a short form should be given in case it is too long for the running head
+%\titlerunning{Synthetic establishment microdata}
+
+% the name(s) of the author(s) follow(s) next
+%
+% NB: Chinese authors should write their first names(s) in front of
+% their surnames. This ensures that the names appear correctly in
+% the running heads and the author index.
+%
+%\author{Lars Vilhuber\inst{1}
+%\and John M. Abowd\inst{1} 
+%\and Jerome P. Reiter\inst{2}}
+
+\author{Lars Vilhuber
+\and John M. Abowd
+\and Jerome P. Reiter \thanks{ \textbf{Vilhuber:} (Corresponding Author) Labor Dynamics Institute, Cornell University, Ithaca, NY, 14853, USA, Phone: +1-607-330-5743, Email: \email{lars.vilhuber@cornell.edu}, \textbf{Abowd:} \email{john.abowd@cornell.edu},  \textbf{Reiter:} jerry@stat.duke.edu}}
+
+%
+%\authorrunning{Vilhuber, Abowd, and Reiter}
+% (feature abused for this document to repeat the title also on left hand pages)
+
+% the affiliations are given next; don't give your e-mail address
+% unless you accept that it will be published
+%\institute{Labor Dynamics Institute, Cornell University, Ithaca, NY, USA}
+%\institute{Duke University, Raleigh, NC, USA}
+\institute{}
+%
+% NB: a more complex sample for affiliations and the mapping to the
+% corresponding authors can be found in the file "llncs.dem"
+% (search for the string "\mainmatter" where a contribution starts).
+% "llncs.dem" accompanies the document class "llncs.cls".
+%
+
+\toctitle{}
+\tocauthor{Lars Vilhuber, John M. Abowd, and Jerome P. Reiter}
+\maketitle
+
+
+\begin{abstract}
+In contrast to the many public-use microdata samples available for individual and household data from many statistical agencies around the world, there are virtually no establishment or firm microdata available. 
+In large part, this difficulty in providing access to business microdata is due to the skewed and sparse distributions that characterize business data. Synthetic data are simulated data generated from statistical models. We organized sessions at the 2015 World Statistical Congress and the 2015 Joint Statistical Meetings, highlighting work on synthetic \emph{establishment} microdata. This overview situates those papers, published in this issue, within the broader literature. 
+\keywords{business data, confidentiality, international comparison, multiple imputation, synthetic, differential privacy}
+\end{abstract}
+
+\clearpage
+\section{Introduction}
+
+Synthetic data are simulated data generated from statistical models. They are designed to protect the confidentiality of the people and firms in the underlying confidential data. The basic ideas can be traced back to   Little \cite{little93} and Rubin \cite{rubin93}. 
+Multiple imputation is often used for data that are missing due to non-response or some other feature of the data collection process that is outside of the data collector's control. In contrast, synthetic data for confidentiality protection scales this idea up to the entire dataset--explicitly replacing some or all observed data with model-generated data in order to protect the confidentiality of the underlying responding units. 
+Whether used to address missing data, confidentiality protection or both, the methods share the goal of allowing users to obtain estimates with known statistical properties of at least some population parameters of interest.%
+\footnote{See \cite{dre:2011} for a review of the theory and applications of the synthetic data methodology}
+
+Synthetic microdata have been used to provide access to detailed confidential datasets in a secure fashion, and thus are also linked to a broader discussion of how best to provide access to such datasets to researchers  \cite{Bender2009,Vilhuber2013,AbowdLane2004,AbowdSchmutte_BPEA2015}. Other methods include access to confidential microdata in secure data enclaves (e.g., research data centers of the U.S. Federal Statistical System, of the  German Federal Employment Agency, others), and via remote submission system. Remote submission systems often provide researchers with test data, sometimes also called ``synthetic data'', so they can  prepare analysis code for remote submission on their local computers. Such test data differ from the synthetic data in this overview in that they explicitly make no claim of statistical validity of any inferences made from the synthetic data. 
+
+In contrast to the many public-use microdata samples available for individual and household data from many statistical agencies around the world, there are virtually no establishment or firm microdata available. 
+In large part, this difficulty in providing access to business microdata is due to the skewed and sparse distributions that characterize business data. In 2013, we organized a session at the World Statistical Congress%
+\footnote{2013 World Statistical Congress: \url{http://2013.isiproceedings.org/}, accessed Dec 20, 2015}   to highlight work on synthetic \emph{establishment} microdata, subsequently published in this journal \cite{SJIAOS-2014a,SJIAOS-2014b,SJIAOS-2014c,SJIAOS-2014d,SJIAOS-2014e}. 
+
+As a follow-up, we organized similar sessions at the 2015 World Statistical Congress\footnote{\url{http://www.isi2015.org/}, accessed Dec 20, 2015}, and at the 2015 Joint Statistical Meetings\footnote{\url{https://www.amstat.org/meetings/jsm/2015/}, accessed December 20, 2015.}. This overview, and the additional articles in this issue, stem from those sessions. 
+ 
+
+\section{Synthetic Longitudinal Business Database}
+In the United States, a key research file in the secure data enclaves of the U.S. federal statistical system is the  \ac{LBD} \cite{MirandaJarmin2002,LBD2012}, a longitudinally-linked version of the U.S. employer business register. Using the LBD as the primary input, a synthetic dataset called the \ac{SynLBD} \cite{KinneyEtAl2011} was generated, and  released to an easily web-accessible computing environment \cite{AbowdVilhuber2010} (a synthetic data set of a German business dataset was released at about the same time \cite{RePEc:iab:iabfme:201101_de}). 
+In addition, the \ac{BDS} are tabulated from the \ac{LBD}, and protected using primary/complementary suppression techniques. The \ac{BDS} were designed as public-use data that explicitly tabulated some of the estimates needed to study phenomena that cannot be studied with traditional tabulations (gross job creations and destructions, which are an establishment-level concept). For instance, \cite{RePEc:nbr:nberwo:16300}  show that much job creation is driven by small and medium firms; however, in the published \ac{BDS}, many of the suppressed cells are for precisely those types of firms and events.
+The article by Miranda and Vilhuber on ``Using partially synthetic microdata to protect
+sensitive cells in business statistics'' describes a potential use of the SynLBD for publishing tabulations for precisely those small cells, and thus potentially improving the analytical quality of the published statistics, without increasing confidentiality risk.%
+\footnote{Preliminary results from the same research effort were presented in \cite{psd2014a}}
+While their final conclusion is tentative until newer work on improving the SynLBD is made available \cite{SJIAOS-2014d}, the method proposed is very much in the spirit of the original Rubin ideas \cite{rubin93}. Their work is also part of a broader effort to make consistently generated synthetic establishment microdata available.
+
+The modeling strategy used for the \ac{SynLBD} does not constrain the resulting synthetic data to match marginals in the confidential data. Wei and Reiter address this issue in ``Releasing Synthetic Magnitude Microdata Constrained to Fixed Marginal Totals.'' By using mixtures of Poisson distributions,  they can guarantee that the synthetic data, drawn from the posterior predictive distribution of the model, sum to the marginal totals produced from the confidential data, and illustrate this on dataset on manufacturing establishments.
+
+
+\section{Strengthening the protection mechanisms}
+%The \ac{SynLBD}, together with a synthetic version of the \ac{SIPP} linked to administrative data called the \ac{SSB} \cite{ssafinal}, are made available on the \ac{SDS} \cite{AbowdVilhuber2010}, and are part of a feedback cycle. 
+%When synthetic data are part of a feedback cycle -- user reports improve subsequent versions -- there is a continuing problem with how to quantify the incremental confidentiality/privacy loss. 
+McClure and Reiter's article ``Assessing Disclosure Risks for Synthetic Data with Arbitrary Intruder Knowledge'' investigates disclosure risks for synthetic data under different levels of intruder knowledge.  Using simulation studies, they use Bayesian posterior probabilities to compute disclosure risks.  They show that, in their studies, risks appear low for ordinary records but are higher for unusual records.  They also show how intruders' abilities to infer about confidential values lessen with decreasing intruder information. 
+
+One of the scenarios considered by McClure and Reiter, when the intruder knows every data point but one, is closely related to the assumptions in differential privacy mechanisms.
+Schmutte, in ``Differentially Private Publication of Data
+on Wages and Job Mobility,'' explicitly considers a differentially private publication mechanism for business-level statistics, and investigates the tradeoff between the privacy guaranteed to individuals present in the population, and the accuracy of the released statistics. He characterizes the realized tradeoff in generated data, but also finds, as in other cases, that model inference in the differentially-private synthetic data is poor when the analysis model is \emph{uncongenial} \cite{Meng1994} to the model generating the synthetic data. This point has been made in other contexts as well \cite{AbowdSchmutte_BPEA2015}.
+
+Finally, the article by Abowd and McKinney on ``Noise Infusion 
+as a Confidentiality Protection Measure for Graph-Based Statistics,'' while not formally on synthetic data models, addresses an issue quite prevalent in the analysis of linked data that includes establishments: how to publish information for graph-based statistics, for instance for flows of workers between establishments. Their solution leverages an existing noise-infusion protection mechanism \cite{AbowdEtAl2009}, and extends it to the protection of the statistics generated from the projection of the employer-employee graph onto a single set of nodes. However, similar to the synthetic data models, no data on actual respondents are ever published. The method proposed here is used to protect the U.S. Census Bureau's newly released Job-to-Job flows \cite{J2j-long}. 
+
+
+
+\section{Conclusions}
+
+Synthetic data methods and related protection mechanisms are an important part in the toolkit of agencies seeking to disseminate microdata. While applied in this context to establishment and firm data, synthetic data methods are valuable in the context of person and household data as well  \cite{RePEc:bes:jnlasa:v:105:i:492:y:2010:p:1347-1357,2014arXiv1412.2282H}. 
+The aforementioned \ac{SSB} \cite{ssafinal} is one particular example of synthetic data in a feedback loop, and the provision of synthetic data for custom extracts from the England and Wales Longitudinal Study (ONS LS), Scottish Longitudinal Study (SLS) and Northern Ireland Longitudinal Study (NILS) as part of the Synthetic Data Estimation for UK Longitudinal Studies (SYLLS) project is another\footnote{\url{http://www.lscs.ac.uk/projects/synthetic-data-estimation-for-uk-longitudinal-studies/}, accessed on December 20, 2015}. The next step of creating even stronger privacy guarantees for synthetic data, through the use of differentially private mechanisms, as evidenced by two papers in this issue, as well as ongoing work on validation (such as the \ac{SDS}, \cite{AbowdVilhuber2010}) and verification servers \cite{Reiter_2009}, is expected to make additional microdata  available to researchers from an increasing number of sources.
+
+
+
+\subsubsection*{Acknowledgments.} Abowd and Vilhuber acknowledge support through NSF Grant SES-1042181. Reiter acknowledges support through NSF grant SES-11-31897.
+
+
+\clearpage
+\bibliographystyle{vancouver}
+\bibliography{abbrev,paper,common-bib-ces-wp,wsc2013}
+
+
+
+\end{document}
